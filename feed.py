@@ -46,8 +46,13 @@ def add_feed(url):
 
 def show_feeds():
 	data = shelve.open("allfeeds.db","n")
+	flag = False
 	for key,val in data.iteritems():
 		print key
+		flag = True
+	if(flag == False):
+		print "None Present"
+		exit()
 	selectfeed = raw_input("Enter name of feed you wish to see: ")
 	newfeed = Feedclass(selectfeed,data[selectfeed])
 	print_feed(newfeed)
